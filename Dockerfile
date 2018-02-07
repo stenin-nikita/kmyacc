@@ -15,13 +15,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-RUN git clone https://github.com/moriyoshi/kmyacc-forked.git /usr/local/kmyacc \
-    && cd /usr/local/kmyacc \
+RUN git clone https://github.com/moriyoshi/kmyacc-forked.git /root/kmyacc \
+    && cd /root/kmyacc \
     && make \
     && make install
 
-COPY docker-entrypoint /usr/local/bin/
-
-ENTRYPOINT ["docker-entrypoint"]
-
-CMD ["kmyacc", "-h"]
+ENTRYPOINT ["/usr/local/bin/kmyacc"]
