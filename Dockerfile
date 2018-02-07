@@ -20,4 +20,8 @@ RUN git clone https://github.com/moriyoshi/kmyacc-forked.git /usr/local/kmyacc \
     && make \
     && make install
 
-ENTRYPOINT ["/usr/local/bin/kmyacc"]
+COPY docker-entrypoint /usr/local/bin/
+
+ENTRYPOINT ["docker-entrypoint"]
+
+CMD ["kmyacc", "-h"]
